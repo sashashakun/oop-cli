@@ -1,14 +1,15 @@
-import axios from 'axios';
-import main from '../src/main';
+import { makeGeoIpLocator } from '../src/main';
 
 describe('#main()', () => {
+  let locatorToTest;
+
   beforeEach(() => {
-    axios.get = () => ({ data: { city: 'ololo' } });
+    locatorToTest = makeGeoIpLocator({ get: () => ({ data: { city: 'ololo' } }) });
   });
 
   describe('when data exists in the service', () => {
     it('returns city', async () => {
-      const data = await main();
+      const data = await locatorToTest();
       expect(data).toBe('ololo');
     });
   });

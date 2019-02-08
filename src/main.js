@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const geoLocationServiceUrl = 'http://ip-api.com/json/';
 
-export default async (ipAddress) => {
+export const makeGeoIpLocator = httpClient => async (ipAddress) => {
   try {
-    const { data: locationData } = await axios.get(`${geoLocationServiceUrl}${ipAddress || ''}`);
+    const { data: locationData } = await httpClient.get(`${geoLocationServiceUrl}${ipAddress || ''}`);
 
     if (locationData.city) {
       return locationData.city;
@@ -17,3 +17,5 @@ export default async (ipAddress) => {
 
   return undefined;
 };
+
+export default makeGeoIpLocator(axios);
