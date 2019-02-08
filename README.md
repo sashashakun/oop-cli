@@ -9,3 +9,14 @@ $ make install
 ```sh
 $ make test
 ```
+
+## Usage
+
+```sh
+$ geomagic
+```
+or
+
+```sh
+$ geomagic %IP_ADDRESS%
+```
