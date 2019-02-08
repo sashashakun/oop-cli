@@ -6,11 +6,7 @@ export const makeGeoIpLocator = httpClient => async (ipAddress) => {
   try {
     const { data: locationData } = await httpClient.get(`${geoLocationServiceUrl}${ipAddress || ''}`);
 
-    if (locationData.city) {
-      return locationData.city;
-    }
-
-    console.log('No such info in our service, sorry. Try again!');
+    return locationData.city || 'No such info in our service, sorry. Try again!'
   } catch (e) {
     console.log(e);
   }
