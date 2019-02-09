@@ -17,7 +17,6 @@ export class Geomagic {
 }
 
 class GeoApiResponse {
-
   constructor({ city, country, regionName, timezone, zip }) {
     this.city = city;
     this.country = country;
