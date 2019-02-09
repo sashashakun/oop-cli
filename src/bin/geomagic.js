@@ -5,4 +5,6 @@ import program from 'commander';
 
 const { args } = program.parse(process.argv);
 
-main(args[0]).then(res => console.log(res));
+main(args[0])
+  .then(res => console.log(res))
+  .catch(e => console.log(e));
