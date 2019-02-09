@@ -10,9 +10,7 @@ export class Geomagic {
   async getLocationDataByIp(ipAddress) {
     const { data } = await this.client.get(`${geoLocationServiceUrl}${ipAddress || ''}`);
 
-    const geoData = new GeoApiResponse(data);
-
-    return geoData.get('city') || 'No such info in our service, sorry. Try again!';
+    return new GeoApiResponse(data);
   }
 }
 
@@ -26,9 +24,7 @@ class GeoApiResponse {
   }
 
   get(fieldName) {
-    if (this[fieldName]) {
-      return this[fieldName];
-    }
+    return this[fieldName];
   }
 }
 
