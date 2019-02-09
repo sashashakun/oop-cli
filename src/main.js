@@ -2,10 +2,16 @@ import axios from 'axios';
 
 const geoLocationServiceUrl = 'http://ip-api.com/json/';
 
-export const makeGeoIpLocator = httpClient => async (ipAddress) => {
-  const { data } = await httpClient.get(`${geoLocationServiceUrl}${ipAddress || ''}`);
+export class Geomagic {
+  constructor(httpClient) {
+    this.client = httpClient;
+  }
 
-  return data.city || 'No such info in our service, sorry. Try again!';
-};
+  async getLocationDataByIp(ipAddress) {
+    const { data } = await this.client.get(`${geoLocationServiceUrl}${ipAddress || ''}`);
 
-export default makeGeoIpLocator(axios);
+    return data.city || 'No such info in our service, sorry. Try again!';
+  }
+}
+
+export default new Geomagic(axios);
