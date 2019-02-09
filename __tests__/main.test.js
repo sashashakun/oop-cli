@@ -10,7 +10,7 @@ describe('#main()', () => {
   describe('when data exists in the service', () => {
     it('returns city', async () => {
       const data = await locatorToTest.getLocationDataByIp();
-      expect(data).toBe('ololo');
+      expect(data).toMatchObject({ city: 'ololo' });
     });
   });
 });
